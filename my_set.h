@@ -161,6 +161,9 @@ private:
 
     const_iterator do_upper_bound(T const &x, base_node *cur) const {
         iterator res = lower_bound(x);
+        if (res == end()) {
+            return res;
+        }
         node *t = (node *) const_cast<base_node *>(res.ptr);
         if (res != end() && t->value == x) {
             return ++res;
@@ -173,6 +176,9 @@ private:
             return end();
         }
         iterator ans = lower_bound(x);
+        if (ans == end()) {
+            return ans;
+        }
         node *t = (node *) const_cast<base_node *>(ans.ptr);
         if (ans != end() && t->value == x) {
             return ans;
